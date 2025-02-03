@@ -8,6 +8,12 @@ ROLE_CHOICES = (
     ('teacher', 'teacher'),
     ('student', 'student')
 )
+
+STATUS_CHOICES = (
+    ('легкий', 'легкий'),
+    ('средний', 'средний'),
+    ('сложный', 'сложный')
+)
 class UserProfile(AbstractUser):
     phone_number = PhoneNumberField(null=True, blank=True)
     age = models.PositiveSmallIntegerField(validators=[MinValueValidator(15),
