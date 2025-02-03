@@ -6,4 +6,4 @@ from multiselectfield import MultiSelectField
 
 
 
-class UserProfile(models.Model):
+class UserProfile(AbstractUser):
