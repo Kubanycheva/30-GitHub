@@ -208,7 +208,6 @@ class Cart(models.Model):
     student = models.OneToOneField(Student, on_delete=models.CASCADE)
 
 
-
 class CartItem(models.Model):
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
