@@ -3,7 +3,7 @@ from .models import *
 
 admin.site.register(UserProfile)
 admin.site.register(Network)
-admin.site.register(UserProfile)
+admin.site.register(Teacher)
 admin.site.register(UserProfile)
 admin.site.register(UserProfile)
 admin.site.register(UserProfile)
