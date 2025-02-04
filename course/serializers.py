@@ -114,3 +114,15 @@ class FavoriteItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = FavoriteItem
         fields = '__all__'
+
+
+class CountrySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Country
+        fields = '__all__'
+
+
+class OrderSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Option
+        fields = '__all__'
