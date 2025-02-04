@@ -4,5 +4,7 @@ from .models import *
 
 # Create your views here.
 
+
 class UserProfileViewSet(viewsets.ModelViewSet):
     queryset = UserProfile.objects.all()
+    serializer_class = UserProfileSerializer
