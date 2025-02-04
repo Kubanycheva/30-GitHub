@@ -80,4 +80,11 @@ class Course(models.Model):
     author = models.ManyToManyField(Teacher)
     level = models.CharField(max_length=32, choices=STATUS_CHOICES)
     price = models.DecimalField(max_digits=8, decimal_places=2)
+    TYPE_CHOICES = (
+        ('бесплатный', 'беслатный'),
+        ('платный', 'платный')
+    )
+    type_course = models.CharField(max_length=32, choices=TYPE_CHOICES)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
