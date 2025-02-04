@@ -120,3 +120,24 @@ class Lesson(models.Model):
     def str(self):
         return f'{self.course}, {self.title}'
 
+
+
+class Assignment(models.Model):
+    title = models.CharField(max_length=32)
+    description = models.TextField()
+    due_date = models.DateField()
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    students = models.ForeignKey(Student, on_delete=models.CASCADE, null=True, blank=True)
+
+    def str(self):
+        return self.title
+
+
+class Exam(models.Model):
+    title = models.CharField(max_length=32)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    end_time = models.DurationField()
+
+    def str(self):
+        return f'{self.title}, {self.course}'
+
