@@ -195,6 +195,8 @@ class TeacherRating(models.Model):
     user = models.ForeignKey(Student, on_delete=models.CASCADE)
     stars = models.PositiveIntegerField(choices=[(i, str(i)) for i in range(1, 6)])
 
+    def str(self):
+        return f'{self.teacher}, {self.stars}'
 
 
 class History(models.Model):
