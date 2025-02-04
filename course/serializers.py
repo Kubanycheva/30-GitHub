@@ -8,5 +8,11 @@ class UserProfile(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class
+class Network(serializers.ModelSerializer):
+    class Meta:
+        model = Network
+        fields = '__all__'
+
+
+class Teacher(serializers.ModelSerializer):
 
