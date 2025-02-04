@@ -123,10 +123,3 @@ class Lesson(models.Model):
 
 class Assignment(models.Model):
     title = models.CharField(max_length=32)
-    description = models.TextField()
-    due_date = models.DateField()
-    course = models.ForeignKey(Course, on_delete=models.CASCADE)
-    students = models.ForeignKey(Student, on_delete=models.CASCADE, null=True, blank=True)
-
-    def str(self):
-        return self.title
