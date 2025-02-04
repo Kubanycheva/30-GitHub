@@ -30,6 +30,23 @@ class UserProfile(AbstractUser):
 class Network(models.Model):
     network_name = models.CharField(max_length=32, null=True, blank=True)
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    title = models.CharField(max_length=32, null=True, blank=True)
 
     def __str__(self):
         return f'{self.user}, {self.network_name}'
+
+
+class Teacher(UserProfile):
+    bio = models.TextField()
+    DAYS_CHOICES = (
+        ('ПН', 'ПН'),
+        ('ВТ', 'ВТ'),
+        ('СР', 'СР'),
+        ('ЧТ', 'ЧТ'),
+        ('ПТ', 'ПТ'),
+        ('СБ', 'СБ')
+    )
+    work_days = models.MultiSelectField(max_length=16, choices=DAYS_CHOICES, max_choices=6)
+    subjects = models.TextField()
+    experience = models.PositiveSmallIntegerField(validators=[MaxValueValidator(40)])
+    role = models.CharField(max_length=32, choices=ROLE_CHOICES, default='teacher')
