@@ -180,10 +180,4 @@ class CourseReview(models.Model):
     def __str__(self):
         return f'{self.user} - {self.course}'
 
-    def clean(self):
-        super().clean()
-        if not self.text and not self.stars:
-            raise ValueError('Choose minimum one of(text, stars)!')
 
-
-class Teacher
