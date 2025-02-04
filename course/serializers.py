@@ -6,3 +6,7 @@ class UserProfile(serializers.ModelSerializer):
     class Meta:
         model = UserProfile
         fields = '__all__'
+
+
+class
+
