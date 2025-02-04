@@ -87,4 +87,25 @@ class Course(models.Model):
     type_course = models.CharField(max_length=32, choices=TYPE_CHOICES)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    course_certificate = models.BooleanField(default=True, )
+    course_image = models.ImageField(upload_to='course_images', null=True, blank=True)
+
+    def str(self):
+        return self.course_name
+
+    def get_avg_rating(self):
+        all_reviews = self.course_review.all()
+        if all_reviews.exists():
+            count_people = 0
+            total_stars = 0
+            for i in all_reviews:
+                if i.stars is not None:
+                    total_stars += i.stars
+                    count_people +=1
+            if count_people == 0:
+                return round(total_stars / count_people, 1)
+            return 0
+
+        def get_count_people(self):
+            return self.course_review_count()
 
