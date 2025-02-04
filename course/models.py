@@ -216,3 +216,7 @@ class CartItem(models.Model):
 class Favorite(models.Model):
     student = models.OneToOneField(Student, on_delete=models.CASCADE)
 
+
+class FavoriteItem(models.Model):
+    favorite = models.ForeignKey(Favorite, on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
