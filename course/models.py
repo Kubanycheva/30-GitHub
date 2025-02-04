@@ -120,6 +120,3 @@ class Lesson(models.Model):
     def str(self):
         return f'{self.course}, {self.title}'
 
-
-class Assignment(models.Model):
-    title = models.CharField(max_length=32)
