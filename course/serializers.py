@@ -110,4 +110,7 @@ class FavoriteSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class Fav
+class FavoriteItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = FavoriteItem
+        fields = '__all__'
