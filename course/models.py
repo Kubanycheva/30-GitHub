@@ -224,3 +224,8 @@ class Favorite(models.Model):
 class FavoriteItem(models.Model):
     favorite = models.ForeignKey(Favorite, on_delete=models.CASCADE)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
+
+
+class Order(models.Model):
+    student = models.ForeignKey(Student, on_delete=models.CASCADE, related_name='client')
+    cart_item = models.ForeignKey(CartItem, on_delete=models.CASCADE)
