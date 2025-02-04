@@ -141,3 +141,49 @@ class Exam(models.Model):
     def str(self):
         return f'{self.title}, {self.course}'
 
+
+class Questions(models.Model):
+    exam = models.ForeignKey(Exam, on_delete=models.CASCADE)
+    title = models.CharField(max_length=64)
+    score = models.PositiveSmallIntegerField(validators=[MinValueValidator(0), MaxValueValidator(100)])
+
+    def __str__(self):
+        return f'{self.exam}, {self.title}'
+
+
+class Option(models.Model):
+    questions = models.ForeignKey(Questions, on_delete=models.CASCADE)
+    variant = models.CharField(max_length=64)
+    option_check = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f'{self.variant}, {self.check}'
+
+
+class Certificate(models.Model):
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    issued_at = models.DateField(auto_now_add=True)
+    certificate_url = models.FileField(upload_to='certificates')
+
+    def __str__(self):
+        return f'{self.student} - {self.course}'
+
+
+class CourseReview(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='course_review')
+    user = models.ForeignKey(Student, on_delete=models.CASCADE)
+    text = models.TextField(null=True, blank=True)
+    stars = models.PositiveIntegerField(choices=[(i, str(i)) for i in range(1, 6)],
+                                        null=True, blank=True)
+
+    def __str__(self):
+        return f'{self.user} - {self.course}'
+
+    def clean(self):
+        super().clean()
+        if not self.text and not self.stars:
+            raise ValueError('Choose minimum one of(text, stars)!')
+
+
+class Teacher
