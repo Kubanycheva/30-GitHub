@@ -72,3 +72,11 @@ class Category(models.Model):
     def __str__(self):
         return self.category_name
 
+
+class Course(models.Model):
+    course_name = models.CharField(max_length=64)
+    description = models.TextField()
+    category = models.ManyToManyField(Category, on_delete=models.CASCADE, related_name='category_name')
+    author = models.ManyToManyField(Teacher)
+    level = models.CharField(max_length=32, choices=STATUS_CHOICES)
+
