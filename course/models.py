@@ -186,7 +186,6 @@ class CourseReview(models.Model):
             raise ValueError('Choose minimum one of(text, stars)!')
 
 
-
 class TeacherRating(models.Model):
     teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
     user = models.ForeignKey(Student, on_delete=models.CASCADE)
@@ -194,7 +193,6 @@ class TeacherRating(models.Model):
 
     def str(self):
         return f'{self.teacher}, {self.stars}'
-
 
 
 class History(models.Model):
@@ -208,3 +206,14 @@ class History(models.Model):
 
 class Cart(models.Model):
     student = models.OneToOneField(Student, on_delete=models.CASCADE)
+
+
+
+class CartItem(models.Model):
+    cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+
+
+class Favorite(models.Model):
+    student = models.OneToOneField(Student, on_delete=models.CASCADE)
+
