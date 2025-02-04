@@ -180,4 +180,31 @@ class CourseReview(models.Model):
     def __str__(self):
         return f'{self.user} - {self.course}'
 
+    def clean(self):
+        super().clean()
+        if not self.text and not self.stars:
+            raise ValueError('Choose minimum one of(text, stars)!')
 
+
+
+class TeacherRating(models.Model):
+    teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
+    user = models.ForeignKey(Student, on_delete=models.CASCADE)
+    stars = models.PositiveIntegerField(choices=[(i, str(i)) for i in range(1, 6)])
+
+    def str(self):
+        return f'{self.teacher}, {self.stars}'
+
+
+
+class History(models.Model):
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    date = models.DateTimeField(auto_now_add=True)
+
+    def str(self):
+        return self.course
+
+
+class Cart(models.Model):
+    student = models.OneToOneField(Student, on_delete=models.CASCADE)
