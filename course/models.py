@@ -79,5 +79,5 @@ class Course(models.Model):
     category = models.ManyToManyField(Category, on_delete=models.CASCADE, related_name='category_name')
     author = models.ManyToManyField(Teacher)
     level = models.CharField(max_length=32, choices=STATUS_CHOICES)
-    price = models.DecimalField
+    price = models.DecimalField(max_digits=8, decimal_places=2)
 
