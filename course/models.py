@@ -229,3 +229,8 @@ class FavoriteItem(models.Model):
 class Order(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE, related_name='client')
     cart_item = models.ForeignKey(CartItem, on_delete=models.CASCADE)
+    STATUS_CHOICES = (
+        ('Оплачено', 'Оплачено'),
+        ('Не Оплачено', 'Не Оплачено'),
+    )
+    status = models.CharField(max_length=32, choices=STATUS_CHOICES, default='Ожидает оброботки')
