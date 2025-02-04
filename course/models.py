@@ -234,3 +234,6 @@ class Order(models.Model):
         ('Не Оплачено', 'Не Оплачено'),
     )
     status = models.CharField(max_length=32, choices=STATUS_CHOICES, default='Ожидает оброботки')
+    nam_on_the_map = models.DecimalField(max_length=35, verbose_name='Имя на карте')
+    card_number = models.DecimalField(max_digits=16, decimal_places=0)
+
