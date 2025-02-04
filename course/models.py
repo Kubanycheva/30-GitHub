@@ -109,3 +109,10 @@ class Course(models.Model):
         def get_count_people(self):
             return self.course_review_count()
 
+
+class Lesson(models.Model):
+    title = models.CharField(max_length=64)
+    video_url = models.URLField(null=True, blank=True)
+    video = models.FileField(upload_to='course_videos', null=True, blank=True)
+    content = models.FileField(upload_to='course_documents', null=True, blank=True)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
