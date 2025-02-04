@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'course',
     'rest_framework',
     "phonenumber_field",
+    'rest_framework_swagger',  # Swagger
+    'drf_yasg'
 ]
 
 MIDDLEWARE = [
