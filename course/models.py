@@ -236,4 +236,9 @@ class Order(models.Model):
     status = models.CharField(max_length=32, choices=STATUS_CHOICES, default='Ожидает оброботки')
     nam_on_the_map = models.DecimalField(max_length=35, verbose_name='Имя на карте')
     card_number = models.DecimalField(max_digits=16, decimal_places=0)
+    expiration_date = models.DateField()
+    cvv = models.DecimalField(max_digits=3, decimal_places=0)
+    created_date = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return f'{self.student}, {self.status}'
