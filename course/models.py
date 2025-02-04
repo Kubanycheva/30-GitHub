@@ -50,3 +50,24 @@ class Teacher(UserProfile):
     subjects = models.TextField()
     experience = models.PositiveSmallIntegerField(validators=[MaxValueValidator(40)])
     role = models.CharField(max_length=32, choices=ROLE_CHOICES, default='teacher')
+
+    def __str__(self):
+        return f'{self.first_name}, {self.role}'
+
+    class Meta:
+        verbose_name_plural='teachers'
+
+
+class Student(models.Model):
+    user = models.OneToOneField(UserProfile, on_delete=models.CASCADE)
+    role = models.CharField(max_length=32, choices=ROLE_CHOICES)
+
+    def __str__(self):
+        return f'{self.user}, {self.role}'
+
+
+class Category(models.Model):
+    category_name = models.CharField(max_length=32, unique=True)
+
+    def __str__(self):
+        return self.category_name
