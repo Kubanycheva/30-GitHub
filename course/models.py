@@ -121,7 +121,6 @@ class Lesson(models.Model):
         return f'{self.course}, {self.title}'
 
 
-
 class Assignment(models.Model):
     title = models.CharField(max_length=32)
     description = models.TextField()
