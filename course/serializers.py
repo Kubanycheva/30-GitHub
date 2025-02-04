@@ -56,3 +56,31 @@ class ExamSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class QuestionsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Questions
+        fields = '__all__'
+
+
+class OptionSerializer(serializers.ModelSerializer):
+    class Meta:
+        models = Option
+        fields = '__all__'
+
+
+class CertificateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Certificate
+        fields = '__all__'
+
+
+class CourseReviewSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CourseReview
+        fields = '__all__'
+
+
+class TeacherRatingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Teacher
+        fields = '__all__'
