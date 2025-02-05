@@ -45,10 +45,15 @@ class CourseListSerializer(serializers.ModelSerializer):
 
 
 class CourseDetailSerializer(serializers.ModelSerializer):
+    count_people = serializers.SerializerMethodField()
+
     class Meta:
         model = Course
         fields = ['course_name', 'description', 'category', 'authot', 'level', 'price',
-                  'type_course', 'created_at', 'update_at', 'course_certificate', 'course_image']
+                  'type_course', 'created_at', 'update_at', 'course_certificate', 'course_image', 'get_count_people']
+
+    def get_count_people(self):
+        return self.course_review.count()
 
 
 class LessonSerializer(serializers.ModelSerializer):
