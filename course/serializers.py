@@ -101,7 +101,7 @@ class CourseReviewSerializer(serializers.ModelSerializer):
 class TeacherRatingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Teacher
-        fields = '__all__'
+        fields = ['teacher']
         
         
 class HistorySerializer(serializers.ModelSerializer):
