@@ -95,7 +95,7 @@ class CertificateSerializer(serializers.ModelSerializer):
 class CourseReviewSerializer(serializers.ModelSerializer):
     class Meta:
         model = CourseReview
-        fields = '__all__'
+        fields = ['course', 'user', 'text', 'stars']
 
 
 class TeacherRatingSerializer(serializers.ModelSerializer):
