@@ -125,3 +125,4 @@ class CountrySerializer(serializers.ModelSerializer):
 class OrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Option
+        fields = '__all__'
