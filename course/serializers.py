@@ -77,7 +77,7 @@ class ExamSerializer(serializers.ModelSerializer):
 class QuestionsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Questions
-        fields = ['title']
+        fields = ['title', 'title', 'score']
 
 
 class OptionSerializer(serializers.ModelSerializer):
