@@ -65,7 +65,7 @@ class LessonSerializer(serializers.ModelSerializer):
 class AssignmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Assignment
-        fields = ['title', 'description']
+        fields = ['title', 'description', 'due_date', 'course', 'student']
 
 
 class ExamSerializer(serializers.ModelSerializer):
