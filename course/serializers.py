@@ -89,7 +89,7 @@ class OptionSerializer(serializers.ModelSerializer):
 class CertificateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Certificate
-        fields = ['student', 'course']
+        fields = ['student', 'course', 'issued_at']
 
 
 class CourseReviewSerializer(serializers.ModelSerializer):
