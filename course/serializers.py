@@ -59,7 +59,7 @@ class CourseDetailSerializer(serializers.ModelSerializer):
 class LessonSerializer(serializers.ModelSerializer):
     class Meta:
         model = Lesson
-        fields = '__all__'
+        fields = ['title']
 
 
 class AssignmentSerializer(serializers.ModelSerializer):

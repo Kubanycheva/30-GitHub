@@ -121,6 +121,8 @@ class Lesson(models.Model):
     video = models.FileField(upload_to='course_videos', null=True, blank=True)
     content = models.FileField(upload_to='course_documents', null=True, blank=True)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
+
+
     def str(self):
         return f'{self.course}, {self.title}'
 
