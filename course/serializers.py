@@ -38,10 +38,16 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class CourseSerializer(serializers.ModelSerializer):
+class CourseListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Course
-        fields = ['course_name']
+        fields = ['course_name', 'description', 'category', 'authot', 'level', ]
+
+
+class CourseDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Course
+        fields = ['course_name', 'description', 'category', 'authot', 'level', ]
 
 
 class LessonSerializer(serializers.ModelSerializer):
