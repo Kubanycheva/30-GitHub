@@ -141,6 +141,8 @@ class Exam(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     end_time = models.DurationField()
 
+    def str(self):
+        return f'{self.title}, {self.course}'
 
 
 class Questions(models.Model):
