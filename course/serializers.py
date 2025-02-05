@@ -20,7 +20,7 @@ class TeacherListSerializer(serializers.ModelSerializer):
         fields = ['username', 'subjects', 'experience']
 
 
-class StudentSerializer(serializers.ModelSerializer):
+class StudentListSimpleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Student
         fields = '__all__'
