@@ -41,7 +41,7 @@ class CategorySerializer(serializers.ModelSerializer):
 class CourseListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Course
-        fields = ['course_name', 'description', 'category', 'authot', 'level', ]
+        fields = ['course_name', 'description', 'category', 'type_course', 'course_certificate', 'course_image']
 
 
 class CourseDetailSerializer(serializers.ModelSerializer):
