@@ -17,7 +17,7 @@ class NetworkSerializer(serializers.ModelSerializer):
 class TeacherListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Teacher
-        fields = ['username', 'subjects']
+        fields = ['username', 'subjects', 'experience']
 
 
 class StudentSerializer(serializers.ModelSerializer):
