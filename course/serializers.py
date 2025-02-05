@@ -77,7 +77,7 @@ class ExamSerializer(serializers.ModelSerializer):
 class QuestionsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Questions
-        fields = '__all__'
+        fields = ['title']
 
 
 class OptionSerializer(serializers.ModelSerializer):
