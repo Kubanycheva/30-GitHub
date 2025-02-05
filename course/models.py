@@ -123,6 +123,7 @@ class Lesson(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
 
 
+
     def str(self):
         return f'{self.course}, {self.title}'
 
