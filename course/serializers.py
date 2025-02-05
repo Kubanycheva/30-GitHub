@@ -26,7 +26,7 @@ class StudentListSimpleSerializer(serializers.ModelSerializer):
         fields = ['username']
 
 
-lass StudentListSimpleSerializer(serializers.ModelSerializer):
+class StudentListSimpleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Student
         fields = ['username']
