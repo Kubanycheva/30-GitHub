@@ -126,6 +126,7 @@ class Lesson(models.Model):
 
 
 class Assignment(models.Model):
+    title = models.CharField(max_length=32)
     description = models.TextField()
     due_date = models.DateField()
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
@@ -140,8 +141,6 @@ class Exam(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     end_time = models.DurationField()
 
-    def str(self):
-        return f'{self.title}, {self.course}'
 
 
 class Questions(models.Model):
