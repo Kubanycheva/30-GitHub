@@ -107,7 +107,7 @@ class TeacherRatingSerializer(serializers.ModelSerializer):
 class HistorySerializer(serializers.ModelSerializer):
     class Meta:
         model = History
-        fields = '__all__'
+        fields = ['history']
         
 
 class CartSerializer(serializers.ModelSerializer):
