@@ -23,7 +23,7 @@ class TeacherListSerializer(serializers.ModelSerializer):
 class StudentListSimpleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Student
-        fields = '__all__'
+        fields = ['username']
 
 
 class CategorySerializer(serializers.ModelSerializer):
