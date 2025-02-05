@@ -71,7 +71,7 @@ class AssignmentSerializer(serializers.ModelSerializer):
 class ExamSerializer(serializers.ModelSerializer):
     class Meta:
         model = Exam
-        fields = '__all__'
+        fields = ['title']
 
 
 class QuestionsSerializer(serializers.ModelSerializer):
