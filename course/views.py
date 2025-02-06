@@ -97,4 +97,4 @@ class CountryViewSet(viewsets.ModelViewSet):
 
 class OrderViewSet(viewsets.ModelViewSet):
     queryset = Order.objects.all()
-    serializer_class = OrderLstSerializer
+    serializer_class = OrderListSerializer
