@@ -149,4 +149,4 @@ class OrderListSerializer(serializers.ModelSerializer):
 class OrderDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Option
-        fields = ['sudent', 'cart_item']
+        fields = ['sudent', 'cart_item', 'status', 'man_on_the_map', 'card_number', 'expiration_date', 'cvv', 'created_date', 'country', '']
