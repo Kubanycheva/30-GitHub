@@ -119,28 +119,34 @@ class CartSerializer(serializers.ModelSerializer):
 class CartItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = CartItem
-        fields = '__all__'
+        fields = ['cart', 'course']
 
 
 class FavoriteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Favorite
-        fields = '__all__'
+        fields = ['student']
 
 
 class FavoriteItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = FavoriteItem
-        fields = '__all__'
+        fields = ['favorite', 'course']
 
 
 class CountrySerializer(serializers.ModelSerializer):
     class Meta:
         model = Country
-        fields = '__all__'
+        fields = ['country_name']
 
 
-class OrderSerializer(serializers.ModelSerializer):
+class OrderListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Option
-        fields = '__all__'
+        fields = ['student', 'cart_item', 'status', 'nam_on_the_mape']
+
+
+class OrderDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Option
+        fields = ['sudent', 'cart_item']
