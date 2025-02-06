@@ -115,7 +115,6 @@ class Course(models.Model):
         return self.course_review.count()
 
 
-class Lesson(models.Model):
     title = models.CharField(max_length=64)
     video_url = models.URLField(null=True, blank=True)
     video = models.FileField(upload_to='course_videos', null=True, blank=True)
