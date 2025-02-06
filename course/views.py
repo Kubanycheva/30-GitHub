@@ -92,9 +92,9 @@ class FavoriteItemViewSet(viewsets.ModelViewSet):
 
 class CountryViewSet(viewsets.ModelViewSet):
     queryset = Country.objects.all()
-    serializer_class = CourseSerializer
+    serializer_class = CourseListSerializer
 
 
 class OrderViewSet(viewsets.ModelViewSet):
     queryset = Order.objects.all()
-    serializer_class = OrderSerializer
+    serializer_class = OrderLstSerializer
