@@ -62,7 +62,7 @@ class Certificate(viewsets.ModelViewSet):
 
 class TeacherViewSet(viewsets.ModelViewSet):
     queryset = Teacher.objects.all()
-    serializer_class = TeacherSerializer
+    serializer_class = TeacherListSerializer
 
 
 class HistoryViewSet(viewsets.ModelViewSet):
