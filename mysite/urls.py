@@ -29,7 +29,6 @@ schema_view = get_schema_view(
         title="Episyche Technologies",
         default_version='v1',),
     public=True,
-    permission_classes=(permissions.AllowAny,),
 )
 
 
