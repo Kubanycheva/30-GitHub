@@ -109,6 +109,7 @@ class Course(models.Model):
             if count_people == 0:
                 return 0
             return round(total_stars / count_people, 1)
+        return 0
 
     def get_count_people(self):
         return self.course_review.count()
