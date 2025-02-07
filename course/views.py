@@ -35,6 +35,11 @@ class CourseListApiView(generics.ListAPIView):
     serializer_class = CourseListSerializer
 
 
+class CourseRetrieveUpdateApiView(generics.RetrieveUpdateAPIView):
+    queryset = Course.objects.all()
+    serializer_class = CourseDetailSerializer
+
+
 class LessonViewSet(viewsets.ModelViewSet):
     queryset = Lesson.objects.all()
     serializer_class = LessonSerializer
