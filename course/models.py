@@ -140,7 +140,6 @@ class Assignment(models.Model):
 class Exam(models.Model):
     title = models.(max_length=32)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
-    end_time = models.()
 
     def str(self):
         return f'{self.title}, {self.course}'
