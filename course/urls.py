@@ -6,6 +6,5 @@ router = routers.SimpleRouter()
 router.register(r'user')
 
 urlpatterns = [
-    path('', include(router.ur
 
 ]
