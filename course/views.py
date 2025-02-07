@@ -100,6 +100,6 @@ class CountryViewSet(viewsets.ModelViewSet):
     serializer_class = CourseListSerializer
 
 
-class OrderViewSet(viewsets.ModelViewSet):
+class OrderListApiView(generics.ListAPIView):
     queryset = Order.objects.all()
     serializer_class = OrderListSerializer
