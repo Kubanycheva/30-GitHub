@@ -103,3 +103,8 @@ class CountryViewSet(viewsets.ModelViewSet):
 class OrderListApiView(generics.ListAPIView):
     queryset = Order.objects.all()
     serializer_class = OrderListSerializer
+
+
+class OrderRetrieveUpdateAPIView(generics.RetrieveUpdateAPIView):
+    queryset = Order.objects.all()
+    serializer_class = OrderDetailSerializer
