@@ -20,12 +20,7 @@ class TeacherViewSet(viewsets.ModelViewSet):
     serializer_class = TeacherSerializer
 
 
-class StudentListApiVIew(generics.ListAPIView):
-    queryset = Student.objects.all()
-    serializer_class = StudentListSerializer
-
-
-class StudentRetrieveUpdateAPIView(generics.RetrieveUpdateAPIView):
+class StudentViewSet(viewsets.ModelViewSet):
     queryset = Student.objects.all()
     serializer_class = StudentListSerializer
 
