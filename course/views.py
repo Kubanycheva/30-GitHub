@@ -30,7 +30,7 @@ class CategoryViewSet(viewsets.ModelViewSet):
     serializer_class = CategorySerializer
 
 
-class CourseViewSet(viewsets.ModelViewSet):
+class CourseListApiView(generics.ListAPIView):
     queryset = Course.objects.all()
     serializer_class = CourseListSerializer
 
