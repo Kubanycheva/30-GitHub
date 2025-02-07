@@ -24,7 +24,7 @@ class UserProfile(AbstractUser):
                                            null=True, blank=True)
     profile_picture = models.ImageField(upload_to='profile_images/', null=True, blank=True)
 
-    def str(self):
+    def __str__(self):
         return f'{self.first_name}, {self.last_name}'
 
 
@@ -34,7 +34,7 @@ class Network(models.Model):
     title = models.CharField(max_length=32, null=True, blank=True)
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
 
-    def str(self):
+    def __str__(self):
         return f'{self.user}, {self.network_name}'
 
 
@@ -53,7 +53,7 @@ class Teacher(UserProfile):
     experience = models.PositiveSmallIntegerField(validators=[MaxValueValidator(40)])
     role = models.CharField(max_length=32, choices=ROLE_CHOICES, default='teacher')
 
-    def str(self):
+    def __str__(self):
         return f'{self.first_name}, {self.role}'
 
     class Meta:
@@ -64,14 +64,14 @@ class Student(models.Model):
     user = models.OneToOneField(UserProfile, on_delete=models.CASCADE)
     role = models.CharField(max_length=32, choices=ROLE_CHOICES, default='student')
 
-    def str(self):
+    def __str__(self):
         return f'{self.user}, {self.role}'
 
 
 class Category(models.Model):
     category_name = models.CharField(max_length=32, unique=True)
 
-    def str(self):
+    def __str__(self):
         return self.category_name
 
 
@@ -92,7 +92,7 @@ class Course(models.Model):
     course_certificate = models.BooleanField(default=True, )
     course_image = models.ImageField(upload_to='course_images', null=True, blank=True)
 
-    def str(self):
+    def __str__(self):
         return self.course_name
 
     def get_avg_rating(self):
@@ -133,7 +133,7 @@ class Assignment(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     students = models.ForeignKey(Student, on_delete=models.CASCADE, null=True, blank=True)
 
-    def str(self):
+    def __str__(self):
         return self.title
 
 
@@ -142,7 +142,7 @@ class Exam(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     end_time = models.DurationField()
 
-    def str(self):
+    def __str__(self):
         return f'{self.title}, {self.course}'
 
 
@@ -152,7 +152,7 @@ class Questions(models.Model):
     score = models.PositiveSmallIntegerField(validators=[MinValueValidator(0),
                                                          MaxValueValidator(100)])
 
-    def str(self):
+    def __str__(self):
         return f'{self.exam}, {self.title}'
 
 
@@ -161,7 +161,7 @@ class Option(models.Model):
     variant = models.CharField(max_length=64)
     option_check = models.BooleanField(default=False)
 
-    def str(self):
+    def __str__(self):
         return f'{self.variant}, {self.check}'
 
 
@@ -171,7 +171,7 @@ class Certificate(models.Model):
     issued_at = models.DateField(auto_now_add=True)
     certificate_url = models.FileField(upload_to='certificates')
 
-    def str(self):
+    def __str__(self):
         return f'{self.student}, {self.course}'
 
 
@@ -182,7 +182,7 @@ class CourseReview(models.Model):
     stars = models.PositiveIntegerField(choices=[(i, str(i)) for i in range(1, 6)],
                                         null=True, blank=True)
 
-    def str(self):
+    def __str__(self):
         return f'{self.user}, {self.course}'
 
     def clean(self):
@@ -196,7 +196,7 @@ class TeacherRating(models.Model):
     user = models.ForeignKey(Student, on_delete=models.CASCADE)
     stars = models.PositiveIntegerField(choices=[(i, str(i)) for i in range(1, 6)])
 
-    def str(self):
+    def __str__(self):
         return f'{self.teacher}, {self.stars}'
 
 
@@ -205,7 +205,7 @@ class History(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     date = models.DateTimeField(auto_now_add=True)
 
-    def str(self):
+    def __str__(self):
         return self.course
 
 
@@ -242,8 +242,8 @@ class Order(models.Model):
         ('Не Оплачено', 'Не Оплачено'),
     )
     status = models.CharField(max_length=32, choices=STATUS_CHOICES, default='Ожидает оброботки')
-    nam_on_the_map = models.DecimalField(max_length=35, verbose_name='Имя на карте')
-    card_number = models.DecimalField(max_digits=16, decimal_places=0)
+    nam_on_the_map = models.CharField(max_length=35, verbose_name='Имя на карте')
+    card_number = models.CharField(max_length=16, verbose_name='Номер карты')
     expiration_date = models.DateField()
     cvv = models.DecimalField(max_digits=3, decimal_places=0)
     created_date = models.DateTimeField(auto_now_add=True)

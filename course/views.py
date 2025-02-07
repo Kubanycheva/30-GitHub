@@ -60,14 +60,9 @@ class OptionViewSet(viewsets.ModelViewSet):
     serializer_class = OptionSerializer
 
 
-class Certificate(viewsets.ModelViewSet):
+class CertificateViewSet(viewsets.ModelViewSet):
     queryset = Certificate.objects.all()
     serializer_class = CertificateSerializer
-
-
-class TeacherViewSet(viewsets.ModelViewSet):
-    queryset = Teacher.objects.all()
-    serializer_class = TeacherListSerializer
 
 
 class HistoryViewSet(viewsets.ModelViewSet):
