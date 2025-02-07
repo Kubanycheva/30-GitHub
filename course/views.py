@@ -25,6 +25,11 @@ class StudentListApiVIew(generics.ListAPIView):
     serializer_class = StudentListSerializer
 
 
+class StudentListApiVIew(generics.ListAPIView):
+    queryset = Student.objects.all()
+    serializer_class = StudentListSerializer
+
+
 class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
