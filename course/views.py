@@ -17,12 +17,12 @@ class NetworkViewSet(viewsets.ModelViewSet):
 
 class TeacherViewSet(viewsets.ModelViewSet):
     queryset = Teacher.objects.all()
-    serializer_class = TeacherSerializer
+    serializer_class = TeacherListSerializer
 
 
 class StudentViewSet(viewsets.ModelViewSet):
     queryset = Student.objects.all()
-    serializer_class = StudentSerializer
+    serializer_class = StudentListSerializer
 
 
 class CategoryViewSet(viewsets.ModelViewSet):
@@ -32,7 +32,7 @@ class CategoryViewSet(viewsets.ModelViewSet):
 
 class CourseViewSet(viewsets.ModelViewSet):
     queryset = Course.objects.all()
-    serializer_class = CourseSerializer
+    serializer_class = CourseListSerializer
 
 
 class LessonViewSet(viewsets.ModelViewSet):
