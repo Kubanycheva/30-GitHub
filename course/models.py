@@ -141,7 +141,6 @@ class Exam(models.Model):
     title = models.(max_length=32)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
 
-    def str(self):
 
 
 class Questions(models.Model):
