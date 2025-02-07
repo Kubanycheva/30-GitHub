@@ -14,7 +14,7 @@ class NetworkSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class TeacherListSerializer(serializers.ModelSerializer):
+class TeacherSerializer(serializers.ModelSerializer):
     class Meta:
         model = Teacher
         fields = ['username', 'subjects', 'experience']

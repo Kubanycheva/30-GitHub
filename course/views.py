@@ -17,10 +17,10 @@ class NetworkViewSet(viewsets.ModelViewSet):
 
 class TeacherViewSet(viewsets.ModelViewSet):
     queryset = Teacher.objects.all()
-    serializer_class = TeacherListSerializer
+    serializer_class = TeacherSerializer
 
 
-class StudentViewSet(viewsets.ModelViewSet):
+class StudentListApiVIew(generics.ListAPIView):
     queryset = Student.objects.all()
     serializer_class = StudentListSerializer
 
