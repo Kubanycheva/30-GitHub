@@ -137,7 +137,6 @@ class Assignment(models.Model):
         return self.title
 
 
-class Exam(models.Model):
 
 
 
