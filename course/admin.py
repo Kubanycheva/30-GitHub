@@ -5,7 +5,7 @@ import nested_admin
 
 
 class OptionInline(nested_admin.NestedStackedInline):
-    models = Option
+    model = Option
     extra = 1
 
 
