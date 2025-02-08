@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     "phonenumber_field",
     'rest_framework_swagger',  # Swagger
     'drf_yasg',
+    'nested_admin',
 ]
 
 MIDDLEWARE = [
