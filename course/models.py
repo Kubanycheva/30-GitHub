@@ -206,7 +206,7 @@ class History(models.Model):
     date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.course
+        return f'{self.course} - {self.date}'
 
 
 class Cart(models.Model):
