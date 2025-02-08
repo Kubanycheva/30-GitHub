@@ -2,7 +2,7 @@ from django.urls import path, include
 from .views import *
 from rest_framework import routers
 
-router = routers.SimpleRouter()
+router = routers.DefaultRouter()
 router.register(r'user', UserProfileViewSet, basename='users')  # Исправлено: ViewSet вместо модели
 router.register(r'network', NetworkViewSet, basename='networks')
 router.register(r'teacher', TeacherViewSet, basename='teachers')

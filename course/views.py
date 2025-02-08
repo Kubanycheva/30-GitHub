@@ -1,3 +1,4 @@
+from h11 import Response
 from rest_framework import viewsets, permissions, status, generics
 from .serializers import *
 from .models import *
@@ -74,20 +75,50 @@ class CartViewSet(viewsets.ModelViewSet):
     queryset = Cart.objects.all()
     serializer_class = CartSerializer
 
+    def get_queryset(self):
+        return Cart.objects.filter(user=self.request.user)
+
+    def retrieve(self, request, *args, **kwargs):
+        cart, created = Cart.objects.get_or_create(user=self.request.user)
+        serializers = self.get_serializer(cart)
+        return Response(serializers.data)
+
 
 class CartItemViewSet(viewsets.ModelViewSet):
     queryset = CartItem.objects.all()
     serializer_class = CartItem
+
+    def get_queryset(self):
+        return  CartItem.objects.filter(cart__user__user=self.request.user)
+
+    def perform_create(self, serializer):
+        cart, created = Cart.objects.get_or_create(user=self.request.user)
+        serializer.save(cart=cart)
 
 
 class FavoriteViewSet(viewsets.ModelViewSet):
     queryset = Favorite.objects.all()
     serializer_class = FavoriteSerializer
 
+    def get_queryset(self):
+        return Favorite.objects.filter(user=self.request.user)
+
+    def retrieve(self, request, *args, **kwargs):
+        cart, created = Favorite.objects.get_or_create(user=self.request.user)
+        serializers = self.get_serializer(cart)
+        return Response(serializers.data)
+
 
 class FavoriteItemViewSet(viewsets.ModelViewSet):
     queryset = FavoriteItem.objects.all()
     serializer_class = FavoriteItemSerializer
+
+    def get_queryset(self):
+        return FavoriteItem.objects.filter(favorite__user__user=self.request.user)
+
+    def perform_create(self, serializer):
+        cart, created = Favorite.objects.get_or_create(user=self.request.user)
+        serializer.save(cart=cart)
 
 
 class CountryViewSet(viewsets.ModelViewSet):

@@ -138,8 +138,8 @@ class Lesson(models.Model):
     content = models.FileField(upload_to='course_documents', null=True, blank=True)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
 
-    def str(self):
-        return f'{self.course}, {self.title}'
+    def __str__(self):
+        return f'{self.course} - {self.title}'
 
     def clean(self):
         super().clean()
@@ -240,19 +240,31 @@ class Cart(models.Model):
         )
         return total_price
 
+    def __str__(self):
+        return f'{self.student}'
+
 
 class CartItem(models.Model):
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return f'{self.cart} - {self.cart}'
+
 
 class Favorite(models.Model):
     student = models.OneToOneField(Student, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.student}'
 
 
 class FavoriteItem(models.Model):
     favorite = models.ForeignKey(Favorite, on_delete=models.CASCADE)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.favorite}'
 
 
 class Country(models.Model):

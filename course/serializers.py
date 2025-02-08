@@ -15,9 +15,19 @@ class NetworkSerializer(serializers.ModelSerializer):
 
 
 class TeacherSerializer(serializers.ModelSerializer):
+    experience = serializers.SerializerMethodField()
+    teacher_avg_rating = serializers.SerializerMethodField()
     class Meta:
         model = Teacher
         fields = ['username', 'subjects', 'experience']
+
+    def get_experience(self, obj):
+        if obj.experience == 1:
+            return f'{obj.experience} year'
+        return f'{obj.experience} years'
+
+    def get_teacher_avg_rating(self, obj):
+        return obj.get_teacher_avg_rating()
 
 
 class StudentListSimpleSerializer(serializers.ModelSerializer):
@@ -136,11 +146,16 @@ class HistorySerializer(serializers.ModelSerializer):
         
 
 class CartSerializer(serializers.ModelSerializer):
+    total_price = serializers.SerializerMethodField()
+
     class Meta:
         model = Cart
         fields = ['student']
-        
-        
+
+    def get_total_price(self, obj):
+        return obj.get_total_price()
+
+
 class CartItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = CartItem
