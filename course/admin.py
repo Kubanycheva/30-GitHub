@@ -1,33 +1,71 @@
 from django.contrib import admin
-from .models import *
-from modeltranslation.admin import TranslationAdmin
 import nested_admin
+from .models import *
+from modeltranslation.admin import TranslationAdmin, TranslationInlineModelAdmin
 
 
-class OptionInline(nested_admin.NestedStackedInline):
+class GeneralMedia:
+    class Media:
+        js = (
+            'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',
+            'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js',
+            'modeltranslation/js/tabbed_translation_fields.js',
+        )
+        css = {
+            'screen': ('modeltranslation/css/tabbed_translation_fields.css',),
+        }
+
+
+@admin.register(Teacher)
+class TeacherAdmin(TranslationAdmin, GeneralMedia):
+    pass
+
+
+@admin.register(Category)
+class CategoryAdmin(TranslationAdmin, GeneralMedia):
+    pass
+
+
+@admin.register(Course)
+class CourseAdmin(TranslationAdmin, GeneralMedia):
+    pass
+
+
+@admin.register(Lesson)
+class LessonAdmin(TranslationAdmin, GeneralMedia):
+    pass
+
+
+@admin.register(Assignment)
+class AssignmentAdmin(TranslationAdmin, GeneralMedia):
+    pass
+
+
+@admin.register(Country)
+class CountryAdmin(TranslationAdmin, GeneralMedia):
+    pass
+
+
+class OptionInline(TranslationInlineModelAdmin, nested_admin.NestedStackedInline, GeneralMedia):
     model = Option
     extra = 1
 
 
-class QuestionsInline(nested_admin.NestedStackedInline):
+class QuestionsInline(TranslationInlineModelAdmin, nested_admin.NestedStackedInline, GeneralMedia):
+    inlines = [OptionInline]
     model = Questions
     extra = 1
-    inlines = [OptionInline]
 
 
-class ExamALlAdmin(nested_admin.NestedModelAdmin):
+@admin.register(Exam)
+class ExamAdmin(nested_admin.NestedModelAdmin, TranslationAdmin, GeneralMedia):
     inlines = [QuestionsInline]
 
 
 admin.site.register(UserProfile)
+admin.site.register(GeneralCoursePrice)
 admin.site.register(Network)
-admin.site.register(Teacher)
 admin.site.register(Student)
-admin.site.register(Category)
-admin.site.register(Course)
-admin.site.register(Lesson)
-admin.site.register(Assignment)
-admin.site.register(Exam, ExamALlAdmin)
 admin.site.register(Certificate)
 admin.site.register(CourseReview)
 admin.site.register(TeacherRating)
@@ -36,5 +74,4 @@ admin.site.register(Cart)
 admin.site.register(CartItem)
 admin.site.register(Favorite)
 admin.site.register(FavoriteItem)
-admin.site.register(Country)
-admin.site.register(Order)
+admin.siter.register(Order)

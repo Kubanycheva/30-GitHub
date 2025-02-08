@@ -59,6 +59,11 @@ class Teacher(UserProfile):
     class Meta:
         verbose_name_plural = "teachers"
 
+    def get_teacher_avg_rating(self):
+        total_ratings = self.teacher_ratings.all()  # Получаем все оценки преподавателя
+        stars = [i.star for i in total_ratings]  # Собираем все звезды из оценок
+        return round(sum(stars) / len(stars), 1)  # Считаем среднее и округляем до 1 знака после запятой
+
 
 class Student(models.Model):
     user = models.OneToOneField(UserProfile, on_delete=models.CASCADE)
@@ -73,6 +78,13 @@ class Category(models.Model):
 
     def __str__(self):
         return self.category_name
+
+
+class GeneralCoursePrice(models.Model):
+    price = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+
+    def __str__(self):
+        return f'{self.price}'
 
 
 class Course(models.Model):
@@ -95,22 +107,28 @@ class Course(models.Model):
     def __str__(self):
         return self.course_name
 
-    def get_avg_rating(self):
+    def get_avg_stars(self):
         all_reviews = self.course_review.all()
         if all_reviews.exists():
-            count_people = 0
-            total_stars = 0
-            for i in all_reviews:
-                if i.stars is not None:
-                    total_stars += i.stars
-                    count_people += 1
-            if count_people == 0:
-                return 0
-            return round(total_stars / count_people, 1)
+            all_stars = [i.star for i in all_reviews if i.star]  #для вычисления среднего значения рейтинга (звезд) курса
+            return round(sum(all_stars) / len(all_stars), 1)
         return 0
 
     def get_count_people(self):
-        return self.course_review.count()
+        return self.course_review.count()  #возвращает количество отзывов, связанных с конкретным курсом
+
+    def get_discount_price(self):
+        general_price = GeneralCoursePrice.objects.first()
+        if general_price:
+            return general_price.price  #предназначен для вычисления цены курса с учетом возможной скидки.
+        return round(self.price / 100 * (100 - self.discount), 2)
+        # return round(self.price * (1 - (self.discount / 100)), 2)
+
+    def get_change_price(self):
+        return self.price - self.admin_price  # выполняет простое вычисление разницы между ценой курса и ценой для администратора
+
+    def get_count_lesson(self):
+        return self.course_lesson.count() #возвращает количество уроков, связанных с курсо
 
 
 class Lesson(models.Model):
@@ -120,10 +138,13 @@ class Lesson(models.Model):
     content = models.FileField(upload_to='course_documents', null=True, blank=True)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
 
-
-
     def str(self):
         return f'{self.course}, {self.title}'
+
+    def clean(self):
+        super().clean()
+        if not self.video_url and not self.video and not self.content:
+            raise ValidationError('Choose minimum one of (video_url, video, content)!')
 
 
 class Assignment(models.Model):
@@ -211,6 +232,13 @@ class History(models.Model):
 
 class Cart(models.Model):
     student = models.OneToOneField(Student, on_delete=models.CASCADE)
+
+    def get_total_price(self):
+        total_price = sum(
+            i.course.get_discount_price() or 0  #вычисляет общую стоимость всех товаров в корзине
+            for i in self.cart_items.all()
+        )
+        return total_price
 
 
 class CartItem(models.Model):
