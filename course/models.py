@@ -10,10 +10,10 @@ ROLE_CHOICES = (
     ('student', 'student')
 )
 
-STATUS_CHOICES = (
-    ("легкий", 'легкий'),
-    ('средний', 'средний'),
-    ('сложный', 'сложный')
+LEVEL_CHOICES = (
+    ("easy", 'easy'),
+    ('middle', 'middle'),
+    ('advanced', 'advanced')
 )
 
 
@@ -68,6 +68,7 @@ class Teacher(UserProfile):
 class Student(models.Model):
     user = models.OneToOneField(UserProfile, on_delete=models.CASCADE)
     role = models.CharField(max_length=32, choices=ROLE_CHOICES, default='student')
+    level = models.CharField(max_length=32, choices=LEVEL_CHOICES, default='easy')
 
     def __str__(self):
         return f'{self.user}, {self.role}'
@@ -92,7 +93,7 @@ class Course(models.Model):
     description = models.TextField()
     category = models.ManyToManyField(Category, related_name='category_course')
     author = models.ManyToManyField(Teacher)
-    level = models.CharField(max_length=32, choices=STATUS_CHOICES)
+    level = models.CharField(max_length=32, choices=LEVEL_CHOICES)
     price = models.DecimalField(max_digits=8, decimal_places=2)
     TYPE_CHOICES = (
         ('бесплатный', 'бесплатный'),
@@ -101,8 +102,10 @@ class Course(models.Model):
     type_course = models.CharField(max_length=32, choices=TYPE_CHOICES)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    course_certificate = models.BooleanField(default=True, )
+    course_certificate = models.BooleanField(default=True)
     course_image = models.ImageField(upload_to='course_images', null=True, blank=True)
+    admin_price = models.DecimalField(max_digits=8, decimal_places=2, default=0)
+
 
     def __str__(self):
         return self.course_name
