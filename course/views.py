@@ -31,12 +31,12 @@ class CategoryViewSet(viewsets.ModelViewSet):
     serializer_class = CategorySerializer
 
 
-class CourseListApiView(generics.ListAPIView):
+class CourseListAPIView(generics.ListAPIView):
     queryset = Course.objects.all()
     serializer_class = CourseListSerializer
 
 
-class CourseRetrieveUpdateApiView(generics.RetrieveUpdateAPIView):
+class CourseDetailAPIView(generics.ListAPIView):
     queryset = Course.objects.all()
     serializer_class = CourseDetailSerializer
 
@@ -54,6 +54,11 @@ class AssignmentViewSet(viewsets.ModelViewSet):
 class ExamViewSet(viewsets.ModelViewSet):
     queryset = Exam.objects.all()
     serializer_class = ExamSerializer
+
+
+class QuestionsViewSet(viewsets.ModelViewSet):
+    queryset = Questions.objects.all()
+    serializer_class = QuestionsSerializer
 
 
 class OptionViewSet(viewsets.ModelViewSet):
@@ -126,11 +131,8 @@ class CountryViewSet(viewsets.ModelViewSet):
     serializer_class = CourseListSerializer
 
 
-class OrderListApiView(generics.ListAPIView):
+class OrderViewSet(viewsets.ModelViewSet):
     queryset = Order.objects.all()
     serializer_class = OrderListSerializer
 
 
-class OrderRetrieveUpdateAPIView(generics.RetrieveUpdateAPIView):
-    queryset = Order.objects.all()
-    serializer_class = OrderDetailSerializer

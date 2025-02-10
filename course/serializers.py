@@ -58,7 +58,7 @@ class CourseListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Course
-        fields = ['course_name', 'description', 'category', 'type_course', 'course_certificate', 'course_image']
+        fields = ['id', 'course_name', 'level', 'type_course', 'author']
 
         def get_discount(self, obj):
             return f'{obj.discount}%'
