@@ -26,9 +26,14 @@ class StudentViewSet(viewsets.ModelViewSet):
     serializer_class = StudentListSerializer
 
 
-class CategoryViewSet(viewsets.ModelViewSet):
+class CategoryListAPIView(generics.ListAPIView):
     queryset = Category.objects.all()
-    serializer_class = CategorySerializer
+    serializer_class = CategoryListSerializer
+
+
+class CategoryDetailAPIView(generics.RetrieveAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategoryDetailSerializer
 
 
 class CourseListAPIView(generics.ListAPIView):

@@ -8,6 +8,12 @@ class UserProfileSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class UserProfileCourseSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserProfile
+        fields = ['first_name', 'last_name']
+
+
 class NetworkSerializer(serializers.ModelSerializer):
     class Meta:
         model = Network
@@ -42,10 +48,10 @@ class StudentListSerializer(serializers.ModelSerializer):
         fields = ['username', 'role']
 
 
-class CategorySerializer(serializers.ModelSerializer):
+class CategoryListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
-        fields = '__all__'
+        fields = ['id', 'category_name']
 
 
 class CourseListSerializer(serializers.ModelSerializer):
@@ -55,28 +61,38 @@ class CourseListSerializer(serializers.ModelSerializer):
     discount_price = serializers.SerializerMethodField()
     change_price = serializers.SerializerMethodField()
     count_lesson = serializers.SerializerMethodField()
+    author = UserProfileCourseSerializer(many=True)
 
     class Meta:
         model = Course
-        fields = ['id', 'course_name', 'level', 'type_course', 'author']
+        fields = ['id', 'course_name', 'price', 'level', 'type_course', 'author', 'course_image',
+                  'discount', 'avg_stars', 'count_people', 'discount_price', 'count_lesson', 'change_price']
 
-        def get_discount(self, obj):
-            return f'{obj.discount}%'
+    def get_discount(self, obj):
+        return f'{obj.discount}%'
 
-        def get_avg_stars(self, obj):
-            return obj.get_avg_stars()
+    def get_avg_stars(self, obj):
+        return obj.get_avg_stars()
 
-        def get_count_people(self, obj):
-            return obj.get_count_people()
+    def get_count_people(self, obj):
+        return obj.get_count_people()
 
-        def get_discount_price(self, obj):
-            return obj.get_discount_price()
+    def get_discount_price(self, obj):
+        return obj.get_discount_price()
 
-        def get_change_price(self, obj):
-            return obj.get_change_price()
+    def get_change_price(self, obj):
+        return obj.get_change_price()
 
-        def get_count_lesson(self, obj):
-            return obj.get_count_lesson()
+    def get_count_lesson(self, obj):
+        return obj.get_count_lesson()
+
+
+class CategoryDetailSerializer(serializers.ModelSerializer):
+    category_course = CourseListSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Category
+        fields = ['category_name', 'category_course']
 
 
 class CourseDetailSerializer(serializers.ModelSerializer):

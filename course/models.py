@@ -134,6 +134,22 @@ class Course(models.Model):
         return self.course_lesson.count() #возвращает количество уроков, связанных с курсо
 
 
+    # def get_count_people(self):
+    #     all_reviews = self.course_review.all()
+    #     if all_reviews.exists():
+    #         count_people = 0
+    ##         total_stars = 0
+    #         for i in all_reviews:
+    #             if i.stars is not None:
+    ##                 total_stars += i.stars      можено и в цену и одновременно в каличество
+    #                count_people += 1
+    # #       if count_people == 0:
+    # #            return 0
+    ##         return round(total_stars / count_people, 1)
+             # return count_people
+    #     return 0
+
+
 class Lesson(models.Model):
     title = models.CharField(max_length=64)
     video_url = models.URLField(null=True, blank=True)
