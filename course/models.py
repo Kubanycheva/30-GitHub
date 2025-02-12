@@ -106,14 +106,13 @@ class Course(models.Model):
     course_image = models.ImageField(upload_to='course_images', null=True, blank=True)
     admin_price = models.DecimalField(max_digits=8, decimal_places=2, default=0)
 
-
     def __str__(self):
         return self.course_name
 
     def get_avg_stars(self):
         all_reviews = self.course_review.all()
         if all_reviews.exists():
-            all_stars = [i.star for i in all_reviews if i.star]  #для вычисления среднего значения рейтинга (звезд) курса
+            all_stars = [i.stars for i in all_reviews if i.stars]  #для вычисления среднего значения рейтинга (звезд) курса
             return round(sum(all_stars) / len(all_stars), 1)
         return 0
 
@@ -155,7 +154,7 @@ class Lesson(models.Model):
     video_url = models.URLField(null=True, blank=True)
     video = models.FileField(upload_to='course_videos', null=True, blank=True)
     content = models.FileField(upload_to='course_documents', null=True, blank=True)
-    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='course_lesson')
 
     def __str__(self):
         return f'{self.course} - {self.title}'

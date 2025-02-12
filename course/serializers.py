@@ -55,7 +55,6 @@ class CategoryListSerializer(serializers.ModelSerializer):
 
 
 class CourseListSerializer(serializers.ModelSerializer):
-    discount = serializers.SerializerMethodField()
     avg_stars = serializers.SerializerMethodField()
     count_people = serializers.SerializerMethodField()
     discount_price = serializers.SerializerMethodField()
@@ -66,10 +65,7 @@ class CourseListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Course
         fields = ['id', 'course_name', 'price', 'level', 'type_course', 'author', 'course_image',
-                  'discount', 'avg_stars', 'count_people', 'discount_price', 'count_lesson', 'change_price']
-
-    def get_discount(self, obj):
-        return f'{obj.discount}%'
+                  'avg_stars', 'count_people', 'discount_price', 'count_lesson', 'change_price']
 
     def get_avg_stars(self, obj):
         return obj.get_avg_stars()
@@ -100,11 +96,11 @@ class CourseDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Course
-        fields = ['course_name', 'description', 'category', 'authot', 'level', 'price',
-                  'type_course', 'created_at', 'update_at', 'course_certificate', 'course_image', 'get_count_people']
+        fields = ['course_name', 'description', 'category',  'price', 'level', 'type_course', 'author', 'course_image',
+                  'count_people']
 
-    def get_count_people(self):
-        return self.course_review.count()
+    def get_count_people(self, obj):
+        return obj.course_review.count()
 
 
 class LessonSerializer(serializers.ModelSerializer):
