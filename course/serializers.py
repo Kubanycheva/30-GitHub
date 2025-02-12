@@ -97,7 +97,7 @@ class CourseDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Course
         fields = ['course_name', 'description', 'category',  'price', 'level', 'type_course', 'author', 'course_image',
-                  'count_people']
+                  'count_people', 'created_at', 'update_at', 'course_certificate']
 
     def get_count_people(self, obj):
         return obj.course_review.count()
