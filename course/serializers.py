@@ -93,11 +93,13 @@ class CategoryDetailSerializer(serializers.ModelSerializer):
 
 class CourseDetailSerializer(serializers.ModelSerializer):
     count_people = serializers.SerializerMethodField()
+    updated_at = serializers.DateTimeField(format('%d-%m-%Y %H:%M'))
+    created_at = serializers.DateTimeField(format('%d-%m-%Y %H:%M'))
 
     class Meta:
         model = Course
         fields = ['course_name', 'description', 'category',  'price', 'level', 'type_course', 'author', 'course_image',
-                  'count_people', 'created_at', 'update_at', 'course_certificate']
+                  'count_people', 'created_at', 'updated_at', 'course_certificate']
 
     def get_count_people(self, obj):
         return obj.course_review.count()
