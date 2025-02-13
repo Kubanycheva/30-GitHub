@@ -111,7 +111,7 @@ class CourseDetailSerializer(serializers.ModelSerializer):
 
 
     def get_count_people(self, obj):
-        return .
+       g
 
 
 class LessonSerializer(serializers.ModelSerializer):
