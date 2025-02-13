@@ -54,6 +54,12 @@ class CategoryListSerializer(serializers.ModelSerializer):
         fields = ['id', 'category_name']
 
 
+class CategoryCourseSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = ['category_name']
+
+
 class CourseListSerializer(serializers.ModelSerializer):
     avg_stars = serializers.SerializerMethodField()
     count_people = serializers.SerializerMethodField()
@@ -92,6 +98,8 @@ class CategoryDetailSerializer(serializers.ModelSerializer):
 
 
 class CourseDetailSerializer(serializers.ModelSerializer):
+    category = CategoryCourseSerializer(many=True)
+    author = UserProfileCourseSerializer(many=True)
     count_people = serializers.SerializerMethodField()
     updated_at = serializers.DateTimeField(format('%d-%m-%Y %H:%M'))
     created_at = serializers.DateTimeField(format('%d-%m-%Y %H:%M'))
