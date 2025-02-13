@@ -110,8 +110,7 @@ class CourseDetailSerializer(serializers.ModelSerializer):
                   'count_people', 'created_at', 'updated_at', 'course_certificate']
 
 
-    def get_count_people(self, obj):
-       g
+
 
 
 class LessonSerializer(serializers.ModelSerializer):
