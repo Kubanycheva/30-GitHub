@@ -23,9 +23,10 @@ class NetworkSerializer(serializers.ModelSerializer):
 class TeacherSerializer(serializers.ModelSerializer):
     experience = serializers.SerializerMethodField()
     teacher_avg_rating = serializers.SerializerMethodField()
+
     class Meta:
         model = Teacher
-        fields = ['username', 'subjects', 'experience']
+        fields = ['subjects', 'experience', 'experience', 'teacher_avg_rating']
 
     def get_experience(self, obj):
         if obj.experience == 1:
@@ -36,16 +37,18 @@ class TeacherSerializer(serializers.ModelSerializer):
         return obj.get_teacher_avg_rating()
 
 
-class StudentListSimpleSerializer(serializers.ModelSerializer):
+class StudentSimpleSerializer(serializers.ModelSerializer):
+    user = UserProfileSerializer()
+
     class Meta:
         model = Student
-        fields = ['username']
+        fields = ['user']
 
 
 class StudentListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Student
-        fields = ['username', 'role']
+        fields = '__all__'
 
 
 class CategoryListSerializer(serializers.ModelSerializer):
@@ -109,8 +112,8 @@ class CourseDetailSerializer(serializers.ModelSerializer):
         fields = ['course_name', 'description', 'category',  'price', 'level', 'type_course', 'author', 'course_image',
                   'count_people', 'created_at', 'updated_at', 'course_certificate']
 
-
-
+    def get_count_people(self, obj):
+        return obj.course_review.count()
 
 
 class LessonSerializer(serializers.ModelSerializer):
@@ -122,7 +125,7 @@ class LessonSerializer(serializers.ModelSerializer):
 class AssignmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Assignment
-        fields = ['title', 'description', 'due_date', 'course', 'student']
+        fields = ['title', 'description', 'due_date', 'course', 'students']
 
 
 class ExamSerializer(serializers.ModelSerializer):
@@ -138,9 +141,10 @@ class QuestionsSerializer(serializers.ModelSerializer):
 
 
 class OptionSerializer(serializers.ModelSerializer):
+
     class Meta:
-        models = Option
-        fields = ['questions', 'variant', 'option_check']
+        model = Option
+        fields = '__all__'
 
 
 class CertificateSerializer(serializers.ModelSerializer):
@@ -162,26 +166,23 @@ class TeacherRatingSerializer(serializers.ModelSerializer):
         
         
 class HistorySerializer(serializers.ModelSerializer):
+    date = serializers.DateTimeField(format('%d-%m-%Y %H:%M'))
+
     class Meta:
         model = History
         fields = ['student', 'course', 'date']
         
 
-class CartSerializer(serializers.ModelSerializer):
-    total_price = serializers.SerializerMethodField()
-
-    class Meta:
-        model = Cart
-        fields = ['student']
-
-    def get_total_price(self, obj):
-        return obj.get_total_price()
-
-
 class CartItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = CartItem
-        fields = ['cart', 'course']
+        fields = '__all__'
+
+
+class CartSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Cart
+        fields = '__all__'
 
 
 class FavoriteSerializer(serializers.ModelSerializer):
@@ -203,12 +204,13 @@ class CountrySerializer(serializers.ModelSerializer):
 
 
 class OrderListSerializer(serializers.ModelSerializer):
+
     class Meta:
-        model = Option
-        fields = ['student', 'cart_item', 'status', 'nam_on_the_mape']
+        model = Order
+        fields = '__all__'
 
 
 class OrderDetailSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Option
-        fields = ['sudent', 'cart_item', 'status', 'man_on_the_map', 'card_number', 'expiration_date', 'cvv', 'created_date', 'country']
+        model = Order
+        fields = '__all__'

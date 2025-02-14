@@ -249,17 +249,10 @@ class History(models.Model):
 
 
 class Cart(models.Model):
-    student = models.OneToOneField(Student, on_delete=models.CASCADE)
-
-    def get_total_price(self):
-        total_price = sum(
-            i.course.get_discount_price() or 0  #вычисляет общую стоимость всех товаров в корзине
-            for i in self.cart_items.all()
-        )
-        return total_price
+    user = models.OneToOneField(Student, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'{self.student}'
+        return f'{self.user}'
 
 
 class CartItem(models.Model):
