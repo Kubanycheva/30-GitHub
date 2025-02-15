@@ -117,6 +117,8 @@ class CourseDetailSerializer(serializers.ModelSerializer):
 
 
 class LessonSerializer(serializers.ModelSerializer):
+    course = CourseListSerializer()
+
     class Meta:
         model = Lesson
         fields = ['title', 'video_url', 'video', 'content', 'course']
