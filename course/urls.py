@@ -13,7 +13,7 @@ router.register(r'exams', ExamViewSet)
 router.register(r'questions', QuestionsViewSet)
 router.register(r'options', OptionViewSet)
 router.register(r'certificates', CertificateViewSet)
-router.register(r'histories', HistoryViewSet)
+router.register(r'histories',
 router.register(r'orders', OrderViewSet)
 router.register(r'cart-item', CartItemViewSet, basename='cart_list')
 router.register(r'cart', CartViewSet)
