@@ -69,8 +69,7 @@ class AssignmentDetailApiView(generics.RetrieveAPIView):
 
 
 class ExamViewSet(viewsets.ModelViewSet):
-    queryset = Exam.objects.all()
-     =
+    queryset = Exam.
 
 
 class QuestionsViewSet(viewsets.ModelViewSet):
