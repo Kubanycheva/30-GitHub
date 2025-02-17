@@ -123,13 +123,4 @@ LANGUAGE_CODE = 'en'
 
 TIME_ZONE = 'Asia/Bishkek'
 
-USE_L10N = True
-
-USE_I18N = True
-
-USE_TZ = True
-
-LANGUAGES = (
-    ('ru', 'Russian'),
-    ('en', 'English'),
-)
+USE
