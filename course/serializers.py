@@ -8,6 +8,12 @@ class UserProfileSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class UserProfileSimpleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserProfile
+        fields = ['first_name', 'last_name', 'age', 'phone_number', 'profile_picture']
+
+
 class UserProfileCourseSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserProfile
@@ -38,11 +44,11 @@ class TeacherSerializer(serializers.ModelSerializer):
 
 
 class StudentSimpleSerializer(serializers.ModelSerializer):
-    user = UserProfileSerializer()
+    user = UserProfileSimpleSerializer()
 
     class Meta:
         model = Student
-        fields = ['user']
+        fields = ['user', 'role']
 
 
 class StudentListSerializer(serializers.ModelSerializer):
@@ -116,15 +122,35 @@ class CourseDetailSerializer(serializers.ModelSerializer):
         return obj.course_review.count()
 
 
-class LessonSerializer(serializers.ModelSerializer):
+class LessonListSerializer(serializers.ModelSerializer):
     course = CourseListSerializer()
 
     class Meta:
         model = Lesson
-        fields = ['title', 'video_url', 'video', 'content', 'course']
+        fields = ['id', 'title', 'video_url', 'video', 'content', 'course']
 
 
-class AssignmentSerializer(serializers.ModelSerializer):
+class LessonDetailSerializer(serializers.ModelSerializer):
+    course = CourseListSerializer()
+
+    class Meta:
+        model = Lesson
+        fields = ['video', 'content', 'course']
+
+
+class AssignmentListSerializer(serializers.ModelSerializer):
+    course = CourseListSerializer()
+    students = StudentSimpleSerializer()
+
+    class Meta:
+        model = Assignment
+        fields = ['id', 'title', 'course', 'students']
+
+
+class AssignmentDetailSerializer(serializers.ModelSerializer):
+    course = CourseListSerializer()
+    students = StudentSimpleSerializer()
+
     class Meta:
         model = Assignment
         fields = ['title', 'description', 'due_date', 'course', 'students']

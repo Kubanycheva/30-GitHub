@@ -48,14 +48,24 @@ class CourseDetailAPIView(generics.ListAPIView):
     serializer_class = CourseDetailSerializer
 
 
-class LessonViewSet(viewsets.ModelViewSet):
+class LessonListApiView(generics.ListAPIView):
     queryset = Lesson.objects.all()
-    serializer_class = LessonSerializer
+    serializer_class = LessonListSerializer
 
 
-class AssignmentViewSet(viewsets.ModelViewSet):
+class LessonDetailApiView(generics.RetrieveUpdateAPIView):
+    queryset = Lesson.objects.all()
+    serializer_class = LessonDetailSerializer
+
+
+class AssignmentListApiView(generics.ListAPIView):
     queryset = Assignment.objects.all()
-    serializer_class = AssignmentSerializer
+    serializer_class = AssignmentListSerializer
+
+
+class AssignmentDetailApiView(generics.RetrieveAPIView):
+    queryset = Assignment.objects.all()
+    serializer_class = AssignmentDetailSerializer
 
 
 class ExamViewSet(viewsets.ModelViewSet):

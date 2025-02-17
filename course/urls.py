@@ -7,8 +7,6 @@ router.register(r'users', UserProfileViewSet)
 router.register(r'networks', NetworkViewSet)
 router.register(r'teachers', TeacherViewSet)
 router.register(r'students', StudentViewSet)
-router.register(r'lessons', LessonViewSet)
-router.register(r'assignments', AssignmentViewSet)
 router.register(r'exams', ExamViewSet)
 router.register(r'questions', QuestionsViewSet)
 router.register(r'options', OptionViewSet)
@@ -26,7 +24,10 @@ urlpatterns = [
     path('courses/', CourseListAPIView.as_view(), name='courses_list'),
     path('courses/<int:pk>/', CourseDetailAPIView.as_view(), name='course_detail'),
     path('categories/', CategoryListAPIView.as_view(), name='categories_list'),
-    path('categories/<int:pk>/', CategoryDetailAPIView.as_view(), name='category_detail')
-
+    path('categories/<int:pk>/', CategoryDetailAPIView.as_view(), name='category_detail'),
+    path('lessons/', LessonListApiView.as_view(), name='lessons_list'),
+    path('lessons/<int:pk>/', LessonDetailApiView.as_view(), name='lessons_list'),
+    path('assignments/', AssignmentListApiView.as_view(), name='assignment_list'),
+    path('assignment/<int:pk>/', AssignmentDetailApiView.as_view(), name='assignment_detail'),
 
 ]
