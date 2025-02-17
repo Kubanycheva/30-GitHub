@@ -70,7 +70,7 @@ class AssignmentDetailApiView(generics.RetrieveAPIView):
 
 class ExamViewSet(viewsets.ModelViewSet):
     queryset = Exam.objects.all()
-    serializer_class = ExamSerializer
+    serializer_class =
 
 
 class QuestionsViewSet(viewsets.ModelViewSet):
