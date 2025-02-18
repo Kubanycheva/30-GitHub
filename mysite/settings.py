@@ -122,9 +122,3 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = 'en'
 
 TIME_ZONE = 'Asia/Bishkek'
-
-USE_L10N = True
-
-
-# Static files (CSS, JavaSc
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
