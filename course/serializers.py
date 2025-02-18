@@ -157,22 +157,58 @@ class AssignmentDetailSerializer(serializers.ModelSerializer):
 
 
 class ExamSerializer(serializers.ModelSerializer):
+    course = CourseListSerializer
+
+    class Meta:
+        model = Exam
+        fields = '__all__'
+
+
+class ExamListSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Exam
+        fields = ['id', 'title', 'end_time']
+
+
+class ExamDetailSerializer(serializers.ModelSerializer):
+    course = CourseListSerializer()
+
     class Meta:
         model = Exam
         fields = ['title', 'course', 'end_time']
 
 
-class QuestionsSerializer(serializers.ModelSerializer):
+class QuestionsListSerializer(serializers.ModelSerializer):
+    exam = ExamListSerializer()
+
     class Meta:
         model = Questions
-        fields = ['title', 'title', 'score']
+        fields = ['exam', 'title', 'score']
+
+
+class QuestionsTeacherSerializer(serializers.ModelSerializer):
+    exam = ExamListSerializer
+
+    class Meta:
+        model = Questions
+        fields = '__all__'
 
 
 class OptionSerializer(serializers.ModelSerializer):
+    questions = QuestionsListSerializer()
 
     class Meta:
         model = Option
         fields = '__all__'
+
+
+class OptionListSerializer(serializers.ModelSerializer):
+    questions = QuestionsListSerializer()
+
+    class Meta:
+        model = Option
+        fields = ['id', 'questions', 'variant', 'option_check']
 
 
 class CertificateSerializer(serializers.ModelSerializer):

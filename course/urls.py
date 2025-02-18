@@ -7,8 +7,6 @@ router.register(r'users', UserProfileViewSet)
 router.register(r'networks', NetworkViewSet)
 router.register(r'teachers', TeacherViewSet)
 router.register(r'students', StudentViewSet)
-router.register(r'exams', ExamViewSet)
-router.register(r'questions', QuestionsViewSet)
 router.register(r'options', OptionViewSet)
 router.register(r'certificates', CertificateViewSet)
 router.register(r'histories', HistoryViewSet)
@@ -28,6 +26,13 @@ urlpatterns = [
     path('lessons/', LessonListApiView.as_view(), name='lessons_list'),
     path('lessons/<int:pk>/', LessonDetailApiView.as_view(), name='lessons_list'),
     path('assignments/', AssignmentListApiView.as_view(), name='assignment_list'),
-    path('assignment/<int:pk>/', AssignmentDetailApiView.as_view(), name='assignment_detail'),
+    path('assignments/<int:pk>/', AssignmentDetailApiView.as_view(), name='assignment_detail'),
+    path('exams/', ExamListApiView.as_view(), name='exam_list'),
+    path('exams/<int:pk>/', ExamDetailApiView.as_view(), name='exam_detail'),
+    path('exam_teacher/', ExamTeacherListApiView.as_view(), name='exam_teacher_list'),
+    path('exam_create/', ExamTeacherCreateApiView.as_view(), name='exam_create'),
+    path('questions/', QuestionsListApiView.as_view(), name='questions_list'),
+    path('questions_create/', QuestionsTeacherCreateApiView.as_view(), name='questions_list_create'),
+
 
 ]

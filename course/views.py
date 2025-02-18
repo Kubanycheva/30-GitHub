@@ -68,14 +68,37 @@ class AssignmentDetailApiView(generics.RetrieveAPIView):
     serializer_class = AssignmentDetailSerializer
 
 
-class ExamViewSet(viewsets.ModelViewSet):
+class ExamListApiView(generics.ListAPIView):
     queryset = Exam.objects.all()
-    serializer_class = ExamSerializer
+    serializer_class = ExamListSerializer
 
 
-class QuestionsViewSet(viewsets.ModelViewSet):
+class ExamDetailApiView(generics.RetrieveAPIView):
+    queryset = Exam.objects.all()
+    serializer_class = ExamDetailSerializer
+
+
+class ExamTeacherListApiView(generics.ListAPIView):
+    queryset = Exam.objects.all()
+    serializer_class = ExamListSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+    def get_queryset(self):
+        return Exam.objects.filter(course__author=self.request.user)
+
+
+class ExamTeacherCreateApiView(generics.CreateAPIView):
+    serializer_class = ExamListSerializer
+
+
+class QuestionsListApiView(generics.ListAPIView):
     queryset = Questions.objects.all()
-    serializer_class = QuestionsSerializer
+    serializer_class = QuestionsListSerializer
+    permission_classes = [permissions.IsAdminUser]
+
+
+class QuestionsTeacherCreateApiView(generics.CreateAPIView):
+    serializer_class = QuestionsTeacherSerializer
 
 
 class OptionViewSet(viewsets.ModelViewSet):
