@@ -46,16 +46,3 @@ INSTALLED_APPS = [
     'course',
     'rest_framework',
     "phonenumber_field",
-    'rest_framework_swagger',  # Swagger
-    'drf_yasg',
-    'nested_admin',
-    'django_filters',
-]
-
-MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middle
-
