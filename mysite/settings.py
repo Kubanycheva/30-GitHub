@@ -21,10 +21,3 @@ load_dotenv()
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 
-
-
-# Application definition
-
-INSTALLED_APPS = [
-    'modeltranslation',
-    'django.contri
