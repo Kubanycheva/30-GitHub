@@ -125,11 +125,6 @@ TIME_ZONE = 'Asia/Bishkek'
 
 USE_L10N = True
 
-USE_I18N = T
-LANGUAGES = (
-    ('ru', 'Russian'),
-    ('en', 'English'),
-)
 
 # Static files (CSS, JavaSc
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
