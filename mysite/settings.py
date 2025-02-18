@@ -80,7 +80,3 @@ TEMPLATES = [
         },
     },
 ]
-
-WSGI_APPLICATION = 'mysite.wsgi.application'
-
-MODELTRANSLATION_DEFAULT_LANGUAGE = 'en'
