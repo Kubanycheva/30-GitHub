@@ -84,9 +84,3 @@ TEMPLATES = [
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
 MODELTRANSLATION_DEFAULT_LANGUAGE = 'en'
-
-MODELTRANSLATION_LANGUAGES = ('en', 'ru')
-# Database
-# https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
-DATABASES = {
