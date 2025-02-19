@@ -126,6 +126,11 @@ class CertificateRetrieveDestroyAPIView(generics.RetrieveDestroyAPIView):
     serializer_class = CertificateSerializer
 
 
+class CertificateRetrieveDestroyAPIView(generics.RetrieveDestroyAPIView):
+    queryset = Certificate.objects.all()
+    serializer_class = CertificateCourseSerializer
+
+
 class HistoryViewSet(viewsets.ModelViewSet):
     queryset = History.objects.all()
     serializer_class = HistorySerializer
