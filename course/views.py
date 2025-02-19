@@ -136,6 +136,11 @@ class CertificateListApiVIew(generics.ListApiVIew):
     serializer_class = CertificateStudentSerializer
 
 
+class CertificateListApiVIew(generics.ListApiVIew):
+    queryset = Certificate.objects.all()
+    serializer_class = CertificateStudentSerializer
+
+
 class HistoryViewSet(viewsets.ModelViewSet):
     queryset = History.objects.all()
     serializer_class = HistorySerializer
