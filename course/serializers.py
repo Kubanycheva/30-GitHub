@@ -211,7 +211,41 @@ class OptionListSerializer(serializers.ModelSerializer):
         fields = ['id', 'questions', 'variant', 'option_check']
 
 
+class OptionDetailSerializer(serializers.ModelSerializer):
+    questions = QuestionsListSerializer()
+
+    class Meta:
+        model = Option
+        fields = ['id', 'questions', 'variant', 'option_check']
+
+
+class OptionTeacherSerializer(serializers.ModelSerializer):
+    questions = QuestionsListSerializer()
+
+    class Meta:
+        model = Option
+        fields = ['id', 'questions', 'variant', 'option_check']
+
+
 class CertificateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Certificate
+        fields = ['student', 'course', 'issued_at', 'certificate_url']
+
+
+class CertificateCourseSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Certificate
+        fields = ['student', 'course', 'issued_at', 'certificate_url']
+
+
+class CertificateStudentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Certificate
+        fields = ['student', 'course', 'issued_at', 'certificate_url']
+
+
+class CertificateListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Certificate
         fields = ['student', 'course', 'issued_at', 'certificate_url']

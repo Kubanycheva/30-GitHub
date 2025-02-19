@@ -101,9 +101,24 @@ class QuestionsTeacherCreateApiView(generics.CreateAPIView):
     serializer_class = QuestionsTeacherSerializer
 
 
-class OptionViewSet(viewsets.ModelViewSet):
+class OptionListApiView(generics.ListAPIView):
+    queryset = Option.objects.all()
+    serializer_class = OptionListSerializer
+
+
+class OptionDestroyAPIView(generics.DestroyAPIView):
     queryset = Option.objects.all()
     serializer_class = OptionSerializer
+
+
+class OptionRetrieveUpdateAPIView(generics.RetrieveUpdateAPIView):
+    queryset = Option.objects.all()
+    serializer_class = OptionDetailSerializer
+
+
+class OptionListCreateAPIView(generics.ListCreateAPIView):
+    queryset = Option.objects.all()
+    serializer_class = OptionTeacherSerializer
 
 
 class CertificateViewSet(viewsets.ModelViewSet):
