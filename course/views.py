@@ -121,7 +121,7 @@ class OptionListCreateAPIView(generics.ListCreateAPIView):
     serializer_class = OptionTeacherSerializer
 
 
-class CertificateViewSet(viewsets.ModelViewSet):
+class CertificateRetrieveDestroyAPIView(generics.RetrieveDestroyAPIView):
     queryset = Certificate.objects.all()
     serializer_class = CertificateSerializer
 
