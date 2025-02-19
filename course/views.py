@@ -123,7 +123,7 @@ class OptionListCreateAPIView(generics.ListCreateAPIView):
 
 class CertificateRetrieveDestroyAPIView(generics.RetrieveDestroyAPIView):
     queryset = Certificate.objects.all()
-    serializer_class = CertificateSerializer
+    serializer_class = CertificateDetailSerializer
 
 
 class CertificateListCreateAPIView(generics.ListCreateAPIView):
@@ -131,12 +131,12 @@ class CertificateListCreateAPIView(generics.ListCreateAPIView):
     serializer_class = CertificateCourseSerializer
 
 
-class CertificateListApiVIew(generics.ListApiVIew):
+class CertificateListAPIView(generics.ListAPIView):
     queryset = Certificate.objects.all()
     serializer_class = CertificateStudentSerializer
 
 
-class CertificateListApiVIew(generics.ListApiVIew):
+class CertificateListAPIView(generics.ListAPIView):
     queryset = Certificate.objects.all()
     serializer_class = CertificateListSerializer
 

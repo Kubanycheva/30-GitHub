@@ -227,15 +227,6 @@ class OptionTeacherSerializer(serializers.ModelSerializer):
         fields = ['id', 'questions', 'variant', 'option_check']
 
 
-class CertificateSerializer(serializers.ModelSerializer):
-    course = CourseListSerializer()
-    student = StudentSimpleSerializer()
-
-    class Meta:
-        model = Certificate
-        fields = ['student', 'course', 'issued_at', 'certificate_url']
-
-
 class CertificateCourseSerializer(serializers.ModelSerializer):
     course = CourseListSerializer()
     student = StudentSimpleSerializer()
@@ -260,7 +251,7 @@ class CertificateListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Certificate
-        fields = ['student', 'course', 'issued_at', 'certificate_url']
+        fields = ['id', 'student', 'course', 'issued_at', 'certificate_url']
 
 
 class CertificateDetailSerializer(serializers.ModelSerializer):
