@@ -251,6 +251,12 @@ class CertificateListSerializer(serializers.ModelSerializer):
         fields = ['student', 'course', 'issued_at', 'certificate_url']
 
 
+class CertificateListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Certificate
+        fields = ['student', 'course', 'issued_at', 'certificate_url']
+
+
 class CourseReviewSerializer(serializers.ModelSerializer):
     class Meta:
         model = CourseReview
