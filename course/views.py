@@ -121,24 +121,20 @@ class OptionListCreateAPIView(generics.ListCreateAPIView):
     serializer_class = OptionTeacherSerializer
 
 
-class CertificateRetrieveDestroyAPIView(generics.RetrieveDestroyAPIView):
-    queryset = Certificate.objects.all()
-    serializer_class = CertificateDetailSerializer
-
-
 class CertificateListCreateAPIView(generics.ListCreateAPIView):
     queryset = Certificate.objects.all()
     serializer_class = CertificateCourseSerializer
 
 
+class CertificateRetrieveDestroyAPIView(generics.RetrieveDestroyAPIView):
+    queryset = Certificate.objects.all()
+    serializer_class = CertificateCourseSerializer
+    permission_classes = [permissions.IsAdminUser]
+
+
 class CertificateListAPIView(generics.ListAPIView):
     queryset = Certificate.objects.all()
     serializer_class = CertificateStudentSerializer
-
-
-class CertificateListAPIView(generics.ListAPIView):
-    queryset = Certificate.objects.all()
-    serializer_class = CertificateListSerializer
 
 
 class CertificateRetrieveUpdateAPIView(generics.RetrieveUpdateAPIView):

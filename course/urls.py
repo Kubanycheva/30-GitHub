@@ -42,10 +42,10 @@ urlpatterns = [
     path('option_delete/', OptionDestroyAPIView.as_view(), name='options_delete'),
     path('option_create/', OptionListCreateAPIView.as_view(), name='options_create'),
 
-    path('certificate_create/<int:pk>', CertificateRetrieveDestroyAPIView.as_view(), name='certificate_delete'),
-    path('certificate_create/', CertificateListCreateAPIView.as_view(), name='certificate_create'),
-    path('certificates/', CertificateListAPIView.as_view(), name='certificate_list'),
-    path('certificates/<int:pk>/', CertificateRetrieveUpdateAPIView.as_view(), name='certificate_detail'),
+    path('certificate_list/', CertificateListCreateAPIView.as_view(), name='certificate_list'),
+    path('certificate_list/<int:pk>/', CertificateRetrieveDestroyAPIView.as_view(), name='certificate_detail'),
+    path('certificate_student/<int:pk>/', CertificateListAPIView.as_view(), name='certificate_student'),
+    path('certificate_detail/<int:pk>/', CertificateRetrieveUpdateAPIView.as_view(), name='certificate_detail'),
 
 
 
