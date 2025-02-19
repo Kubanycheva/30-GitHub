@@ -228,30 +228,45 @@ class OptionTeacherSerializer(serializers.ModelSerializer):
 
 
 class CertificateSerializer(serializers.ModelSerializer):
+    course = CourseListSerializer()
+    student = StudentSimpleSerializer()
+
     class Meta:
         model = Certificate
         fields = ['student', 'course', 'issued_at', 'certificate_url']
 
 
 class CertificateCourseSerializer(serializers.ModelSerializer):
+    course = CourseListSerializer()
+    student = StudentSimpleSerializer()
+
     class Meta:
         model = Certificate
         fields = ['student', 'course', 'issued_at', 'certificate_url']
 
 
 class CertificateStudentSerializer(serializers.ModelSerializer):
+    course = CourseListSerializer()
+    student = StudentSimpleSerializer()
+
     class Meta:
         model = Certificate
         fields = ['student', 'course', 'issued_at', 'certificate_url']
 
 
 class CertificateListSerializer(serializers.ModelSerializer):
+    course = CourseListSerializer()
+    student = StudentSimpleSerializer()
+
     class Meta:
         model = Certificate
         fields = ['student', 'course', 'issued_at', 'certificate_url']
 
 
 class CertificateDetailSerializer(serializers.ModelSerializer):
+    course = CourseListSerializer()
+    student = StudentSimpleSerializer()
+
     class Meta:
         model = Certificate
         fields = ['student', 'course', 'issued_at', 'certificate_url']

@@ -141,9 +141,9 @@ class CertificateListApiVIew(generics.ListApiVIew):
     serializer_class = CertificateListSerializer
 
 
-class CertificateListApiVIew(generics.ListApiVIew):
+class CertificateRetrieveUpdateAPIView(generics.RetrieveUpdateAPIView):
     queryset = Certificate.objects.all()
-    serializer_class = CertificateListSerializer
+    serializer_class = CertificateDetailSerializer
 
 
 class HistoryViewSet(viewsets.ModelViewSet):
