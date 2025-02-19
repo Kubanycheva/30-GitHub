@@ -7,7 +7,6 @@ router.register(r'users', UserProfileViewSet)
 router.register(r'networks', NetworkViewSet)
 router.register(r'teachers', TeacherViewSet)
 router.register(r'students', StudentViewSet)
- router.register(r'certificates', CertificateViewSet)
 router.register(r'histories', HistoryViewSet)
 router.register(r'orders', OrderViewSet)
 router.register(r'cart-item', CartItemViewSet, basename='cart_list')
@@ -42,6 +41,10 @@ urlpatterns = [
     path('option_detail<int:pk>/', OptionRetrieveUpdateAPIView.as_view(), name='options_detail'),
     path('option_delete/', OptionDestroyAPIView.as_view(), name='options_delete'),
     path('option_create/', OptionListCreateAPIView.as_view(), name='options_create'),
+
+    path('certificate_delete/', CertificateRetrieveDestroyAPIView.as_view(), name='certificate_delete'),
+
+
 
 
 
