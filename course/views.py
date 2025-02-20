@@ -16,12 +16,12 @@ class NetworkViewSet(viewsets.ModelViewSet):
     serializer_class = NetworkSerializer
 
 
-class TeacherViewSet(viewsets.ModelViewSet):
+class TeacherListApiVIew(generics.ListAPIView):
     queryset = Teacher.objects.all()
     serializer_class = TeacherSerializer
 
 
-class StudentViewSet(viewsets.ModelViewSet):
+class StudentListApiVIew(generics.ListAPIView):
     queryset = Student.objects.all()
     serializer_class = StudentListSerializer
 
@@ -34,6 +34,11 @@ class CategoryListAPIView(generics.ListAPIView):
 class CategoryDetailAPIView(generics.RetrieveAPIView):
     queryset = Category.objects.all()
     serializer_class = CategoryDetailSerializer
+
+
+class GeneralCoursePriceListCreateAPIView(generics.ListCreateAPIView):
+    serializer_class = CategoryCourseSerializer
+    permission_classes = [permissions.IsAdminUser]
 
 
 class CourseListAPIView(generics.ListAPIView):
@@ -106,7 +111,7 @@ class OptionListApiView(generics.ListAPIView):
     serializer_class = OptionListSerializer
 
 
-class OptionDestroyAPIView(generics.DestroyAPIView):
+class OptionRetrieveDestroyAPIView(generics.RetrieveDestroyAPIView):
     queryset = Option.objects.all()
     serializer_class = OptionSerializer
 

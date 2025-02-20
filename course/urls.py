@@ -38,14 +38,14 @@ urlpatterns = [
     path('questions_create/', QuestionsTeacherCreateApiView.as_view(), name='questions_list_create'),
 
     path('option_list/', OptionListApiView.as_view(), name='options_list'),
-    path('option_detail<int:pk>/', OptionRetrieveUpdateAPIView.as_view(), name='options_detail'),
-    path('option_delete/', OptionDestroyAPIView.as_view(), name='options_delete'),
+    path('option_list/<int:pk>/', OptionRetrieveUpdateAPIView.as_view(), name='options_detail'),
+    path('option_create/<int:pk>', OptionRetrieveDestroyAPIView.as_view(), name='options_delete'),
     path('option_create/', OptionListCreateAPIView.as_view(), name='options_create'),
 
     path('certificate_list/', CertificateListCreateAPIView.as_view(), name='certificate_list'),
     path('certificate_list/<int:pk>/', CertificateRetrieveDestroyAPIView.as_view(), name='certificate_detail'),
-    path('certificate_student/<int:pk>/', CertificateListAPIView.as_view(), name='certificate_student'),
-    path('certificate_detail/<int:pk>/', CertificateRetrieveUpdateAPIView.as_view(), name='certificate_detail'),
+    path('certificate_student/', CertificateListAPIView.as_view(), name='certificate_student'),
+    path('certificate_student/<int:pk>/', CertificateRetrieveUpdateAPIView.as_view(), name='certificate_detail'),
 
 
 

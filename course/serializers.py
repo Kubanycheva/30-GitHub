@@ -5,13 +5,13 @@ from .models import *
 class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserProfile
-        fields = '__all__'
+        fields = ['first_name', 'last_name', 'age', 'phone_number', 'profile_picture', 'username']
 
 
 class UserProfileSimpleSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserProfile
-        fields = ['first_name', 'last_name', 'age', 'phone_number', 'profile_picture']
+        fields = ['first_name', 'last_name', 'profile_picture']
 
 
 class UserProfileCourseSerializer(serializers.ModelSerializer):
@@ -21,9 +21,11 @@ class UserProfileCourseSerializer(serializers.ModelSerializer):
 
 
 class NetworkSerializer(serializers.ModelSerializer):
+    user = UserProfileSimpleSerializer()
+
     class Meta:
         model = Network
-        fields = '__all__'
+        fields = ['network_name', 'network_link', 'title', 'user']
 
 
 class TeacherSerializer(serializers.ModelSerializer):
@@ -32,7 +34,7 @@ class TeacherSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Teacher
-        fields = ['subjects', 'experience', 'experience', 'teacher_avg_rating']
+        fields = ['bio', 'subjects', 'work_days', 'experience', 'teacher_avg_rating', 'role']
 
     def get_experience(self, obj):
         if obj.experience == 1:
@@ -41,6 +43,12 @@ class TeacherSerializer(serializers.ModelSerializer):
 
     def get_teacher_avg_rating(self, obj):
         return obj.get_teacher_avg_rating()
+
+
+class TeacherSimpleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Teacher
+        fields = ['bio', 'work_days', 'subjects', 'role']
 
 
 class StudentSimpleSerializer(serializers.ModelSerializer):
@@ -52,6 +60,8 @@ class StudentSimpleSerializer(serializers.ModelSerializer):
 
 
 class StudentListSerializer(serializers.ModelSerializer):
+    user = UserProfileSimpleSerializer()
+
     class Meta:
         model = Student
         fields = '__all__'
@@ -233,7 +243,7 @@ class CertificateCourseSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Certificate
-        fields = ['student', 'course', 'issued_at', 'certificate_url']
+        fields = ['id', 'student', 'course', 'issued_at', 'certificate_url']
 
 
 class CertificateStudentSerializer(serializers.ModelSerializer):
