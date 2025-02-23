@@ -5,8 +5,6 @@ from rest_framework import routers
 router = routers.SimpleRouter()
 router.register(r'users', UserProfileViewSet)
 router.register(r'networks', NetworkViewSet)
-router.register(r'teachers', TeacherViewSet)
-router.register(r'students', StudentViewSet)
 router.register(r'histories', HistoryViewSet)
 router.register(r'orders', OrderViewSet)
 router.register(r'cart-item', CartItemViewSet, basename='cart_list')
@@ -16,6 +14,9 @@ router.register(r'countries', CountryViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
+
+    path('teacher/', ExamTeacherListApiView.as_view(), name='teacher_list'),
+    path('student/', StudentListApiVIew.as_view(), name='student_list'),
 
     path('courses/', CourseListAPIView.as_view(), name='courses_list'),
     path('courses/<int:pk>/', CourseDetailAPIView.as_view(), name='course_detail'),
