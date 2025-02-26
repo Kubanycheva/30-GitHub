@@ -305,4 +305,3 @@ class Order(models.Model):
 
 
 
-    hdfjdkhfdhsjdhjfdshjkdfs
