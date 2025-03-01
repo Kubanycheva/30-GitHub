@@ -31,7 +31,7 @@ schema_view = get_schema_view(
         default_version='v1',),
     public=True,
     permission_classes=(permissions.AllowAny,),
-)
+ )
 
 
 urlpatterns = i18n_patterns(
